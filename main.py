@@ -20,10 +20,9 @@ def translateTest(to_translate, dest_language):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     sg.theme('DarkAmber')  # Keep things interesting for your users
-
     layout = [[sg.Text('translator')],
-              [sg.Input(key='-IN-')],
-              [sg.Input(key='-OUT-')],
+              [sg.Multiline(key='-MULTIIN-')],
+              [sg.Multiline(key='-MULTIOUT-')],
               [sg.Button('Read'), sg.Exit()]]
 
     window = sg.Window('Window that stays open', layout)
@@ -32,10 +31,10 @@ if __name__ == '__main__':
         event, values = window.read()
         print(event, values)
         if event == "Read":
-            print(values['-IN-'])
-            inputText = values['-IN-']
-            outputText = translateTest(inputText, "nl")
-            window['-OUT-'].update(outputText)
+            print(values['-MULTIIN-'])
+            inputText = values['-MULTIIN-']
+            outputText = translateTest(inputText, "de")
+            window['-MULTIOUT-'].update(outputText)
 
         if event == sg.WIN_CLOSED or event == 'Exit':
             break
